@@ -133,7 +133,11 @@ def edit_drink(token, drink_id):
 
     # If no drink id found abort 404 - resource not found
     if drink is None:
-        abort(404)
+        result = {
+            'success': False,
+            'error': 'Drink #' + drink_id + ' not found to be edited'
+        }
+        return jsonify(result), 404
 
     # Replace the title of the drink with the new title
     if 'title' in new_drink:
@@ -179,7 +183,11 @@ def delete_drink(token, drink_id):
 
     # If no drink id found abort 404 - resource not found
     if drink is None:
-        abort(404)
+        result = {
+            'success': False,
+            'error': 'Drink #' + drink_id + ' not found to be edited'
+        }
+        return jsonify(result), 404
 
     # Delete the drink
     drink.delete()
